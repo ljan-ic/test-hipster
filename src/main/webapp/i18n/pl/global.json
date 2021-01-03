@@ -8,6 +8,7 @@
       "entities": {
         "main": "Encje",
         "omniUser": "Omni User",
+        "conference": "Conference",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

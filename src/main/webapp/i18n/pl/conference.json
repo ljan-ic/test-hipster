@@ -1,0 +1,27 @@
+{
+  "omniviewfrontApp": {
+    "conference": {
+      "home": {
+        "title": "Conference",
+        "createLabel": "Dodaj Conference",
+        "createOrEditLabel": "Dodaj lub edytuj: Conference",
+        "notFound": "No Conferences found"
+      },
+      "created": "Utworzono nowy obiekt typu Conference z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Conference z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Conference z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Conference {{ id }}?"
+      },
+      "detail": {
+        "title": "Conference"
+      },
+      "name": "Name",
+      "thumbnail": "Thumbnail",
+      "startDateTime": "Start Date Time",
+      "expectedEndDateTime": "Expected End Date Time",
+      "description": "Description",
+      "price": "Price"
+    }
+  }
+}
