@@ -1,0 +1,20 @@
+entity User {
+			
+    email String required pattern(/[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/),
+    password String required,
+    name String required maxlength(30),
+    surname String required maxlength(30),
+    about String maxlength(500)
+
+}
+
+entity Conference {
+
+	name String required,
+	thumbnail ImageBlob required maxbytes(1000000),
+    startDateTime ZonedDateTime required,
+    expectedEndDateTime ZonedDateTime required,
+    description String required,
+    price BigDecimal required
+
+}

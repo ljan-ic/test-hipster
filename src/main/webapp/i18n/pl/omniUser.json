@@ -1,0 +1,26 @@
+{
+  "omniviewfrontApp": {
+    "omniUser": {
+      "home": {
+        "title": "Omni User",
+        "createLabel": "Dodaj Omni User",
+        "createOrEditLabel": "Dodaj lub edytuj: Omni User",
+        "notFound": "No Omni Users found"
+      },
+      "created": "Utworzono nowy obiekt typu Omni User z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Omni User z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Omni User z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Omni User {{ id }}?"
+      },
+      "detail": {
+        "title": "Omni User"
+      },
+      "email": "Email",
+      "password": "Password",
+      "name": "Name",
+      "surname": "Surname",
+      "about": "About"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="omniUser">
+            <h2><span jhiTranslate="omniviewfrontApp.omniUser.detail.title">Omni User</span> {{ omniUser.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="omniviewfrontApp.omniUser.email">Email</span></dt>
+                <dd>
+                    <span>{{ omniUser.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="omniviewfrontApp.omniUser.password">Password</span></dt>
+                <dd>
+                    <span>{{ omniUser.password }}</span>
+                </dd>
+                <dt><span jhiTranslate="omniviewfrontApp.omniUser.name">Name</span></dt>
+                <dd>
+                    <span>{{ omniUser.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="omniviewfrontApp.omniUser.surname">Surname</span></dt>
+                <dd>
+                    <span>{{ omniUser.surname }}</span>
+                </dd>
+                <dt><span jhiTranslate="omniviewfrontApp.omniUser.about">About</span></dt>
+                <dd>
+                    <span>{{ omniUser.about }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/omni-user', omniUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

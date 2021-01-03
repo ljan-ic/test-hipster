@@ -1,0 +1,128 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-conference-heading" jhiTranslate="omniviewfrontApp.conference.home.createOrEditLabel">Create or edit a Conference</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="omniviewfrontApp.conference.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="omniviewfrontApp.conference.thumbnail" for="field_thumbnail">Thumbnail</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('thumbnailContentType')!.value + ';base64,' + editForm.get('thumbnail')!.value" style="max-height: 100px;" *ngIf="editForm.get('thumbnail')!.value" alt="conference image"/>
+                        <div *ngIf="editForm.get('thumbnail')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('thumbnailContentType')!.value }}, {{ byteSize(editForm.get('thumbnail')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('thumbnail', 'thumbnailContentType', 'file_thumbnail')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_thumbnail" (change)="setFileData($event, 'thumbnail', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="thumbnail" id="field_thumbnail"
+                           formControlName="thumbnail"/>
+                    <input type="hidden" class="form-control" name="thumbnailContentType" id="field_thumbnailContentType"
+                           formControlName="thumbnailContentType" />
+                    <div *ngIf="editForm.get('thumbnail')!.invalid && (editForm.get('thumbnail')!.dirty || editForm.get('thumbnail')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('thumbnail')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('thumbnail')?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" [translateValues]="{ max: 1000000 }">
+                            This field cannot be more than 1000000.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="omniviewfrontApp.conference.startDateTime" for="field_startDateTime">Start Date Time</label>
+                    <div class="d-flex">
+                        <input id="field_startDateTime" type="datetime-local" class="form-control" name="startDateTime" formControlName="startDateTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('startDateTime')!.invalid && (editForm.get('startDateTime')!.dirty || editForm.get('startDateTime')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('startDateTime')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('startDateTime')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="omniviewfrontApp.conference.expectedEndDateTime" for="field_expectedEndDateTime">Expected End Date Time</label>
+                    <div class="d-flex">
+                        <input id="field_expectedEndDateTime" type="datetime-local" class="form-control" name="expectedEndDateTime" formControlName="expectedEndDateTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('expectedEndDateTime')!.invalid && (editForm.get('expectedEndDateTime')!.dirty || editForm.get('expectedEndDateTime')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('expectedEndDateTime')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('expectedEndDateTime')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="omniviewfrontApp.conference.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                    <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="omniviewfrontApp.conference.price" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                           formControlName="price"/>
+                    <div *ngIf="editForm.get('price')!.invalid && (editForm.get('price')!.dirty || editForm.get('price')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('price')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('price')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
