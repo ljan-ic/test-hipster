@@ -1,0 +1,12 @@
+version: '2'
+services:
+  omniviewfront-postgresql:
+    image: postgres:12.1
+    # volumes:
+    #     - ~/volumes/jhipster/omniviewfront/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=omniviewfront
+      - POSTGRES_PASSWORD=
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432
